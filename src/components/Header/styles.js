@@ -39,6 +39,10 @@ export const BuscarInputContainer = styled.div`
   margin: 0 12px;
   padding: 2px 5px;
   width: 175px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Menu = styled.a`
