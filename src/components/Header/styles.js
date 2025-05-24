@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  algin-items: center;
+  align-items: center;
 `;
 
 export const Column = styled.div`
