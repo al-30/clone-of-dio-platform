@@ -1,5 +1,7 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { MdEmail, MdLock } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
@@ -16,10 +18,27 @@ import {
 } from './styles';
 
 export default function Login() {
-  const navigate = useNavigate();
-  const handleClickSignIn = () => {
-    navigate('/feed');
-  };
+  // const navigate = useNavigate();
+
+  const schema = yup.object({
+    email: yup.string().email('email não é válido').required('Campo obrigatorio'),
+    password: yup.string().min(3, 'A senha deve ter no minimo 3 caracteres').required('Campo obrigatorio'),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+  });
+
+  const onSubmit = (data) => console.log(data);
+
+  // const handleClickSignIn = () => {
+  //   navigate('/feed');
+  // };
   return (
     <>
       <Header />
@@ -30,18 +49,33 @@ export default function Login() {
             tecnologias e entrar mais rápido nas empresas mais desejadas.
           </Title>
         </Column>
+
         <Column>
           <Wrapper>
             <TitleLogin>Faça seu cadastro</TitleLogin>
             <SubtitleLogin>Faça seu login e make the change</SubtitleLogin>
-            <form>
-              <Input placeholder='email' lefIcon={<MdEmail />} />
-              <Input placeholder='Senha' type='password' lefIcon={<MdLock />} />
+
+            <form onSubmit={handleSubmit()}>
+              <Input
+                name='email'
+                control={control}
+                errorMessage={errors.email?.message}
+                placeholder='email'
+                lefIcon={<MdEmail />}
+              />
+              <Input
+                name='password'
+                control={control}
+                errorMessage={errors.password?.message}
+                placeholder='Senha'
+                type='password'
+                lefIcon={<MdLock />}
+              />
               <Button
-                onClick={handleClickSignIn}
+                // onClick={handleClickSignIn}
                 title='Entrar'
                 variant='secondary'
-                type='button'
+                type='submit'
               />
             </form>
             <Row>
