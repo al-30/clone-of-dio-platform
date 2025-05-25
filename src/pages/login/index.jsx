@@ -1,10 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { MdEmail, MdLock } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Input from '../../components/Input';
+import api from '../../services/api';
 import {
   Column,
   Container,
@@ -18,27 +20,44 @@ import {
 } from './styles';
 
 export default function Login() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const schema = yup.object({
-    email: yup.string().email('email não é válido').required('Campo obrigatorio'),
-    password: yup.string().min(3, 'A senha deve ter no minimo 3 caracteres').required('Campo obrigatorio'),
+    email: yup
+      .string()
+      .email('email não é válido')
+      .required('Campo obrigatorio'),
+    password: yup
+      .string()
+      .min(3, 'A senha deve ter no minimo 3 caracteres')
+      .required('Campo obrigatorio'),
   });
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (formData) => {
+    console.log(`email: ${formData.email}; senha: ${formData.password}`);
+    try {
+      const { data } = await api.get(
+        `users?email=${formData.email}&senha=${formData.password}`
+      );
+      if (data.length === 1) {
+        navigate('/feed');
+      } else {
+        alert('Email ou senha incorreto');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  // const handleClickSignIn = () => {
-  //   navigate('/feed');
-  // };
   return (
     <>
       <Header />
@@ -55,7 +74,7 @@ export default function Login() {
             <TitleLogin>Faça seu cadastro</TitleLogin>
             <SubtitleLogin>Faça seu login e make the change</SubtitleLogin>
 
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <Input
                 name='email'
                 control={control}
