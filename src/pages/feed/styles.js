@@ -1,37 +1,37 @@
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  align-items: center;
+  width: 100%;
   max-width: 80%;
   margin: 0 auto;
   margin-top: 120px;
-  width: 100%;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h3`
   color: #ffffff;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 44px;
+  font-size: 18px;
+  line-height: 25px;
   margin-bottom: 20px;
-  width: 320px;
 `;
 
-export const TitleHightLight = styled.span`
-  color: #e4185d;
-`;
-
-export const TextContent = styled.p`
+export const TitleHightLight = styled.h3`
   font-family: 'Open Sans';
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  width: 420px;
-  margin-bottom: 20px;
-  line-height: 22px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  color: #ffffff70;
+  margin-bottom: 24px;
+`;
+
+export const Column = styled.div`
+  flex: ${({ flex }) => flex};
+  padding-right: 24px;
 `;
