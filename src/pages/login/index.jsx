@@ -80,7 +80,7 @@ export default function Login() {
                 control={control}
                 errorMessage={errors.email?.message}
                 placeholder='email'
-                lefIcon={<MdEmail />}
+                leftIcon={<MdEmail />}
               />
               <Input
                 name='password'
@@ -88,14 +88,9 @@ export default function Login() {
                 errorMessage={errors.password?.message}
                 placeholder='Senha'
                 type='password'
-                lefIcon={<MdLock />}
+                leftIcon={<MdLock />}
               />
-              <Button
-                // onClick={handleClickSignIn}
-                title='Entrar'
-                variant='secondary'
-                type='submit'
-              />
+              <Button title='Entrar' variant='secondary' type='submit' />
             </form>
             <Row>
               <EsqueciText>Esqueci minha senha</EsqueciText>
