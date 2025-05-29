@@ -1,3 +1,3 @@
 export interface IHader {
-  userAuthenticated: boolean;
+  userAuthenticated?: boolean;
 }
