@@ -1,5 +1,6 @@
 import { Controller } from 'react-hook-form';
 import { ErrorText, IconContainer, InputContainer, InputText } from './styles';
+import { IInput } from './types';
 
 export default function Input({
   leftIcon,
@@ -7,7 +8,7 @@ export default function Input({
   control,
   errorMessage,
   ...rest
-}) {
+}:IInput) {
   return (
     <>
       <InputContainer>
