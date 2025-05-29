@@ -6,7 +6,7 @@ import {
   ImageBackground,
   PostInfo,
   UserInfo,
-  UserPicture,
+  UserPicture
 } from './styles';
 
 export default function Card() {
@@ -31,7 +31,7 @@ export default function Card() {
         <HasInfo>
           <h4>#HTML #CSS #Javascript</h4>
           <p>
-            <FiThumbsUp />
+            <FiThumbsUp/>
             10
           </p>
         </HasInfo>
