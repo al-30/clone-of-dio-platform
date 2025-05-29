@@ -3,8 +3,9 @@ import { useForm } from 'react-hook-form';
 import { MdEmail, MdLock, MdPerson } from 'react-icons/md';
 import * as yup from 'yup';
 import Button from '../../components/Button';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import Input from '../../components/Input';
+import { IFormData } from '../login/types';
 import {
   Column,
   Container,
@@ -13,7 +14,7 @@ import {
   TextLogin,
   Title,
   TitleRegister,
-  Wrapper,
+  Wrapper
 } from './styles';
 
 export default function Register() {
@@ -34,7 +35,7 @@ export default function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData:IFormData) => {
     console.log(`email: ${formData.email}; senha: ${formData.password}`);
   };
   return (
