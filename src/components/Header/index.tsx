@@ -1,5 +1,7 @@
 import logo from '../../assets/logo-dio.png';
-import Button from '../Button/';
+import Button from '../Button';
+import { IHader } from './types';
+
 import {
   BuscarInputContainer,
   Container,
@@ -8,10 +10,10 @@ import {
   MenuRight,
   Row,
   UserPicture,
-  Wrapper,
+  Wrapper
 } from './styles';
 
-export default function Header({ userAuthenticated }) {
+export function Header({ userAuthenticated }:IHader) {
   return (
     <Wrapper>
       <Container>
