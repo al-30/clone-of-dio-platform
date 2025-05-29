@@ -2,9 +2,11 @@ import styled, { css } from 'styled-components';
 import { IButtomStyled } from './types';
 
 export const ButtonContainer = styled.button<IButtomStyled>`
+
   background: #565656;
   border-radius: 22px;
   position: relative;
+  border-color:transparent;
 
   color: #ffffff;
   padding: 2px 12px;
