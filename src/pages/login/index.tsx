@@ -4,7 +4,7 @@ import { MdEmail, MdLock } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import Button from '../../components/Button';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header';
 import Input from '../../components/Input';
 import api from '../../services/api';
 import {
@@ -16,8 +16,9 @@ import {
   SubtitleLogin,
   Title,
   TitleLogin,
-  Wrapper,
+  Wrapper
 } from './styles';
+import { IFormData } from './types';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -37,12 +38,12 @@ export default function Login() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IFormData>({
     resolver: yupResolver(schema),
     mode: 'onChange',
   });
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData:IFormData) => {
     console.log(`email: ${formData.email}; senha: ${formData.password}`);
     try {
       const { data } = await api.get(
